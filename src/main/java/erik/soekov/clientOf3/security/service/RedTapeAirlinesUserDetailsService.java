@@ -12,40 +12,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
-public class RedTapeAirlinesUserDetailsService implements UserDetailsService, RedTapeAirlinesUserService {
+@Service
+public class RedTapeAirlinesUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Override
-    public void registerUser(UserDTO userDTO) throws UsernameExistsException, PasswordMismatchException {
-        User user = null;
-        if(!userDTO.isPasswordMatch()){
-            throw new PasswordMismatchException();
-        }
-
-        user = this.userRepository.findByUsername(userDTO.getUsername());
-        if(user == null){
-            userDTO.setPassword(this.passwordEncoder.encode(userDTO.getPassword()));
-            this.userRepository.save(new User(userDTO));
-        }else{
-            throw new UsernameExistsException();
-        }
-    }
-
-    @Override
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
-
-    @Override
-    public User findByAuthentication(Authentication authentication) {
-        return this.userRepository.findByUsername(authentication.getName());
-    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -3,6 +3,7 @@ package erik.soekov.clientOf3.security.config;
 import erik.soekov.clientOf3.general.constants.LinkLib;
 import erik.soekov.clientOf3.security.service.RedTapeAirlinesUserDetailsService;
 import erik.soekov.clientOf3.security.service.RedTapeAirlinesUserService;
+import erik.soekov.clientOf3.security.service.RedTapeAirlinesUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,11 +21,19 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private RedTapeAirlinesUserDetailsService userDetailsService;
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService);
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers("/", "/security/registration*").permitAll()
+                .antMatchers("/", "/security/registration*", "/h2-console").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage("/security/login").defaultSuccessUrl(LinkLib.defaultGreetings).permitAll()
                 .and().logout().permitAll();
@@ -33,16 +42,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder encoder() {
         return new BCryptPasswordEncoder(11);
-    }
-
-    @Bean
-    @Override
-    public UserDetailsService userDetailsService(){
-        return new RedTapeAirlinesUserDetailsService();
-    }
-
-    @Bean
-    public RedTapeAirlinesUserService redTapeAirlinesUserService(){
-        return new RedTapeAirlinesUserDetailsService();
     }
 }
