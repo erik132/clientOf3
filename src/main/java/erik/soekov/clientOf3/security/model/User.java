@@ -35,9 +35,9 @@ public class User {
     }
 
     public User(UserDTO userDTO){
-        this.username = userDTO.username;
-        this.password = userDTO.password;
-        this.email = userDTO.email;
+        this.username = userDTO.getUsername();
+        this.password = userDTO.getPassword();
+        this.email = userDTO.getEmail();
         this.active = 1;
         this.roles = new TreeSet<>();
         roles.add(new Role(2, "STANDARD"));

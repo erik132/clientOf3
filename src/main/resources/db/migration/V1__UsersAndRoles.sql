@@ -16,6 +16,10 @@ CREATE TABLE roles(
   role VARCHAR(255) NOT NULL
 );
 
+INSERT INTO roles (id, role) VALUES
+  (1,'ADMIN'),
+  (2,'STANDARD');
+
 
 CREATE TABLE user_roles(
   user_id INT NOT NULL ,

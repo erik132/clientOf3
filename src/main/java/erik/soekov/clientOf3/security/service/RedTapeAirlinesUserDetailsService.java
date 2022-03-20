@@ -24,13 +24,13 @@ public class RedTapeAirlinesUserDetailsService implements UserDetailsService, Re
     @Override
     public void registerUser(UserDTO userDTO) throws UsernameExistsException, PasswordMismatchException {
         User user = null;
-        if(!userDTO.password.equals(userDTO.matchingPassword)){
+        if(!userDTO.isPasswordMatch()){
             throw new PasswordMismatchException();
         }
 
-        user = this.userRepository.findByUsername(userDTO.username);
+        user = this.userRepository.findByUsername(userDTO.getUsername());
         if(user == null){
-            userDTO.password = this.passwordEncoder.encode(userDTO.password);
+            userDTO.setPassword(this.passwordEncoder.encode(userDTO.getPassword()));
             this.userRepository.save(new User(userDTO));
         }else{
             throw new UsernameExistsException();
