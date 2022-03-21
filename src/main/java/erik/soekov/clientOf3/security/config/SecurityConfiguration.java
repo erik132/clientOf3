@@ -2,8 +2,6 @@ package erik.soekov.clientOf3.security.config;
 
 import erik.soekov.clientOf3.general.constants.LinkLib;
 import erik.soekov.clientOf3.security.service.RedTapeAirlinesUserDetailsService;
-import erik.soekov.clientOf3.security.service.RedTapeAirlinesUserService;
-import erik.soekov.clientOf3.security.service.RedTapeAirlinesUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +10,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -35,7 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/", "/security/registration*", "/h2-console").permitAll()
                 .anyRequest().authenticated()
-                .and().formLogin().loginPage("/security/login").defaultSuccessUrl(LinkLib.defaultGreetings).permitAll()
+                .and().formLogin().loginPage(LinkLib.defaultLoginPage).defaultSuccessUrl(LinkLib.defaultDashboard).permitAll()
                 .and().logout().permitAll();
     }
 
