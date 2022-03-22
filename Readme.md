@@ -1,0 +1,1 @@
+All the demo users in the database have the same password: "tali"

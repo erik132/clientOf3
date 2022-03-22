@@ -20,7 +20,7 @@ public class Client {
     @Column(name = "username")
     private String username;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     private Country country;
 

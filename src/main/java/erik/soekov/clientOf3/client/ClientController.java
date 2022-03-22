@@ -4,6 +4,7 @@ import erik.soekov.clientOf3.client.dto.ClientDto;
 import erik.soekov.clientOf3.client.service.ClientService;
 import erik.soekov.clientOf3.general.constants.GeneralNames;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +20,9 @@ public class ClientController {
     private ClientService clientService;
 
     @RequestMapping("/clientList")
-    public String showClientList(Model model){
+    public String showClientList(Authentication authentication, Model model){
         model.addAttribute("title", GeneralNames.title);
-        List<ClientDto> clients = new ArrayList<>();
-        clients.add(clientService.getClient(1));
-        model.addAttribute("clients", clients);
+        model.addAttribute("clients", clientService.getClients(authentication.getName()));
         return "client/clientList";
     }
 

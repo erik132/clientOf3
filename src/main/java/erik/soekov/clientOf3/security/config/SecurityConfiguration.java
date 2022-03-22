@@ -33,7 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/security/registration*", "/h2-console").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin().loginPage(LinkLib.defaultLoginPage).defaultSuccessUrl(LinkLib.defaultDashboard).permitAll()
-                .and().logout().permitAll();
+                .and().logout().logoutSuccessUrl("/").permitAll();
     }
 
     @Bean
