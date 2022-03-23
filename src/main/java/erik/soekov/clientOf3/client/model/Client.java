@@ -46,6 +46,7 @@ public class Client {
     }
 
     public Client(FullClientDto client, List<UserWithClients> handlers, Country country){
+        id = client.getClientId();
         clientHandlers = handlers;
         firstname = client.getFirstname();
         lastname = client.getLastname();

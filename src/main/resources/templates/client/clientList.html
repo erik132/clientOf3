@@ -30,6 +30,7 @@
         <table class="table">
   <thead>
     <tr>
+      <th scope="col">#</th>
       <th scope="col">First</th>
       <th scope="col">Last</th>
       <th scope="col">Username</th>
@@ -39,12 +40,13 @@
   </thead>
   <tbody>
     <tr th:each="client : ${clients}">
+      <th scope="row" th:text="${client.clientId}"/>
       <td th:text="${client.firstname}"/>
       <td th:text="${client.lastname}"/>
       <td th:text="${client.username}"/>
       <td th:text="${client.country}"/>
       <td>
-        <a href="client.html" class="btn btn-primary">Edit client</a>
+        <a th:href="@{/client/addClient(clientId=${client.clientId})}" class="btn btn-primary">Edit [[${client.username}]]</a>
       </td>
     </tr>
   </tbody>

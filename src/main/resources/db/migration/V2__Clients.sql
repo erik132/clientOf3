@@ -13,7 +13,8 @@ CREATE TABLE clients(
 
 INSERT INTO CLIENTS (firstname, lastname, username, email, address, country_id) VALUES
 ('Peter', 'Strasser', 'HerrStrasser', 'peter.strasser@zeppelin.de', 'Berlin Tellstrasse 8-16', 6),
-('Jonne', 'Järvela', 'KorpinMetsään', 'jonne.jarvela@korpiklaani.fi', 'Oulu Pihtakuja 12', 4);
+('Jonne', 'Järvela', 'KorpinMetsään', 'jonne.jarvela@korpiklaani.fi', 'Oulu Pihtakuja 12', 4),
+('Franz', 'Tornado', 'MadCow', 'franz.tornado@eurobeat.com', 'Frascati Via Delle Fratte 4-3', 7);
 
 CREATE TABLE COUNTRIES(
     id INT NOT NULL PRIMARY KEY,
@@ -26,7 +27,8 @@ INSERT INTO COUNTRIES (id, name) VALUES
     (3, 'Lithuania'),
     (4, 'Finland'),
     (5, 'Sweden'),
-    (6, 'Germany');
+    (6, 'Germany'),
+    (7, 'Italy');
 
 CREATE TABLE client_handlers(
     user_id INT NOT NULL,
@@ -36,4 +38,5 @@ CREATE TABLE client_handlers(
 
 INSERT INTO client_handlers (user_id, client_id) VALUES
     (1,1),
-    (1,2);
+    (1,2),
+    (2,3);

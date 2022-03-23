@@ -1,13 +1,31 @@
 package erik.soekov.clientOf3.client.dto;
 
+import erik.soekov.clientOf3.client.model.Client;
+
 public class FullClientDto {
 
+    private Integer clientId;
     private String firstname;
     private String lastname;
     private String username;
     private String email;
     private String address;
     private Integer countryId;
+
+    public FullClientDto(){
+
+    }
+
+    public FullClientDto(Client client){
+        clientId = client.getId();
+        firstname = client.getFirstname();
+        lastname = client.getLastname();
+        username = client.getUsername();
+        email = client.getEmail();
+        address = client.getAddress();
+        countryId = client.getCountry().getId();
+
+    }
 
     public String getFirstname() {
         return firstname;
@@ -55,6 +73,14 @@ public class FullClientDto {
 
     public void setCountryId(Integer countryId) {
         this.countryId = countryId;
+    }
+
+    public Integer getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
     }
 
     @Override

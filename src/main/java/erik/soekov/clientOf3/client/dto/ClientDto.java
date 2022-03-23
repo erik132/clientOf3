@@ -4,6 +4,7 @@ import erik.soekov.clientOf3.client.model.Client;
 
 public class ClientDto {
 
+    private Integer clientId;
     private String firstname;
     private String lastname;
     private String username;
@@ -14,6 +15,7 @@ public class ClientDto {
     }
 
     public ClientDto(Client client){
+        clientId = client.getId();
         firstname = client.getFirstname();
         lastname = client.getLastname();
         username = client.getUsername();
@@ -50,5 +52,13 @@ public class ClientDto {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public Integer getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Integer clientId) {
+        this.clientId = clientId;
     }
 }
