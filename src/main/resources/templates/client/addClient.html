@@ -20,50 +20,47 @@
 
     <div class="container">
       <div class="py-5 text-center">
+        <a href="/client/clientList">Back to clients</a>
         <h2>Add Client</h2>
       </div>
 
       <div class="row">
         <div class="col-md-12 order-md-1">
-          <form class="needs-validation" novalidate>
+          <form class="needs-validation" action="/client/addClient" th:object="${client}" method="POST" enctype="utf8">
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="firstName">First name</label>
-                <input type="text" class="form-control" id="firstName" placeholder="" value="">
+                <input type="text" class="form-control" th:field="*{firstname}" placeholder="John" />
               </div>
               <div class="col-md-6 mb-3">
                 <label for="lastName">Last name</label>
-                <input type="text" class="form-control" id="lastName" placeholder="" value="">
+                <input type="text" class="form-control" th:field="*{lastname}" placeholder="Smith" />
               </div>
             </div>
 
             <div class="mb-3">
               <label for="username">Username</label>
               <div class="input-group">
-                <input type="text" class="form-control" id="username" placeholder="Username">
+                <input type="text" class="form-control" th:field="*{username}" placeholder="Johnatan"/>
               </div>
             </div>
 
             <div class="mb-3">
               <label for="email">Email <span class="text-muted">(Optional)</span></label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+              <input type="email" class="form-control" th:field="*{email}" placeholder="you@example.com">
 
             </div>
 
             <div class="mb-3">
               <label for="address">Address</label>
-              <input type="text" class="form-control" id="address" placeholder="1234 Main St">
+              <input type="text" class="form-control" th:field="*{address}" placeholder="1234 Main St"/>
             </div>
 
             <div class="mb-3">
               <label for="country">Country</label>
-                <select class="custom-select d-block w-100" id="country">
-                  <option value="">Choose...</option>
-                  <option>Estonia</option>
-                  <option>Latvia</option>
-                  <option>Lithuania</option>
-                  <option>Finland</option>
-                  <option>Sweden</option>
+                <select class="custom-select d-block w-100" th:field="*{countryId}">
+                  <option value = "" disabled selected>Choose ...</option>
+                  <option th:each="country : ${countries}" th:value="${country.id}" th:text="${country.name}"></option>
                 </select>
             </div>
             <hr class="mb-4">

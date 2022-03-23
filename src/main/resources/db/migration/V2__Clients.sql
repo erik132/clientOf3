@@ -6,12 +6,14 @@ CREATE TABLE clients(
     firstname VARCHAR(255) NOT NULL,
     lastname VARCHAR(255) NOT NULL,
     username VARCHAR(255) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    address VARCHAR(255) NOT NULL,
     country_id INT NOT NULL
 );
 
-INSERT INTO CLIENTS (firstname, lastname, username, country_id) VALUES
-('Peter', 'Strasser', 'HerrStrasser', 6),
-('Jonne', 'Järvela', 'KorpinMetsään', 4);
+INSERT INTO CLIENTS (firstname, lastname, username, email, address, country_id) VALUES
+('Peter', 'Strasser', 'HerrStrasser', 'peter.strasser@zeppelin.de', 'Berlin Tellstrasse 8-16', 6),
+('Jonne', 'Järvela', 'KorpinMetsään', 'jonne.jarvela@korpiklaani.fi', 'Oulu Pihtakuja 12', 4);
 
 CREATE TABLE COUNTRIES(
     id INT NOT NULL PRIMARY KEY,

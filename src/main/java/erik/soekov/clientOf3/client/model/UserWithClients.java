@@ -14,12 +14,7 @@ public class UserWithClients {
     @Column(name = "username")
     private String username;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "client_handlers",
-            joinColumns =
-                    { @JoinColumn(name = "user_id", referencedColumnName = "id") },
-            inverseJoinColumns =
-                    { @JoinColumn(name = "client_id", referencedColumnName = "id") })
+    @ManyToMany(mappedBy = "clientHandlers", fetch = FetchType.EAGER)
     private List<Client> clients;
 
     public Integer getId() {
